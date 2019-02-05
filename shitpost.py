@@ -46,7 +46,7 @@ with open('haxboys.txt', 'r') as arquivo:
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     boteco = client.get_channel('524737257945694243')
-    bot = list(client.servers).pop().me #cria o objeto membro referente ao bot
+    bot = list(client.servers).pop().me # cria o objeto membro referente ao bot
     tempo_inicial = time.time() - 100000
     tempo_espera = ESPERA + abs(random.gauss(0, 1*60))
     canal = boteco
