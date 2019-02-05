@@ -7,7 +7,7 @@ class Haxboys:
         self.falas = []
         self.nickname = filename[3:-4]
         self.avatar = avatar
-        with open(filename, 'r', encoding = 'latin-1') as fonte:
+        with open(filename, 'r', encoding = 'utf-8') as fonte:
             hashtag = False
             contador = 0
             frase = ''
@@ -34,6 +34,9 @@ haxboys = []
 with open('haxboys.txt', 'r', encoding = 'latin-1') as arquivo:
     for linha in arquivo:
         for autista in linha.split(sep=';'):
-            haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
+            try:
+                haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
+            except:
+                pass
 for i in haxboys:
-    print(i.falas)
+    print(i.nickname, i.falas)
