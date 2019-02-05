@@ -50,7 +50,7 @@ async def on_ready():
     tempo_inicial = time.time() - 100000
     tempo_espera = ESPERA + abs(random.gauss(0, 1*60))
     canal = boteco
-    mensagens = 0
+    mensagens = 1
     while True:
         if time.time() - tempo_inicial > tempo_espera:
             try:
