@@ -11,7 +11,7 @@ class Haxboys:
         self.falas = []
         self.nickname = filename[3:-4]
         self.avatar = avatar
-        with open(filename, 'r', encoding = 'utf-8') as fonte:
+        with open(filename, 'r', encoding = 'latin-1') as fonte:
             hashtag = False
             contador = 0
             frase = ''
@@ -38,7 +38,6 @@ client = discord.Client()
 server = discord.Server(id='447168484124655647')
 haxboys = []
 with open('haxboys.txt', 'r', encoding = 'utf-8') as arquivo:
-    print(arquivo)
     for linha in arquivo:
         for autista in linha.split(sep=';'):
             haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
