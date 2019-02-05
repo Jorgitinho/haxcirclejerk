@@ -38,6 +38,7 @@ client = discord.Client()
 server = discord.Server(id='447168484124655647')
 haxboys = []
 with open('haxboys.txt', 'r', encoding = 'utf-8') as arquivo:
+    print(arquivo)
     for linha in arquivo:
         for autista in linha.split(sep=';'):
             haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
