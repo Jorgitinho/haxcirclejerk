@@ -31,8 +31,9 @@ class Haxboys:
         return mensagem
 
 haxboys = []
-print(haxboys)
 with open('haxboys.txt', 'r', encoding = 'latin-1') as arquivo:
     for linha in arquivo:
         for autista in linha.split(sep=';'):
             haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
+for i in haxboys:
+    print(i.falas)
