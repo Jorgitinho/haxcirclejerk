@@ -38,5 +38,6 @@ with open('haxboys.txt', 'r') as arquivo:
                 haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
             except:
                 pass
+print("teste")
 for i in haxboys:
     print(i.nickname, i.falas)
