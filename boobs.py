@@ -7,7 +7,7 @@ class Haxboys:
         self.falas = []
         self.nickname = filename[3:-4]
         self.avatar = avatar
-        with open(filename, 'r', encoding = 'utf-8') as fonte:
+        with open(filename, 'r') as fonte:
             hashtag = False
             contador = 0
             frase = ''
@@ -31,7 +31,7 @@ class Haxboys:
         return mensagem
 
 haxboys = []
-with open('haxboys.txt', 'r', encoding = 'latin-1') as arquivo:
+with open('haxboys.txt', 'r') as arquivo:
     for linha in arquivo:
         for autista in linha.split(sep=';'):
             try:
