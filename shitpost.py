@@ -28,10 +28,12 @@ class Haxboys:
                         frase = ''
                         contador = 0
         self.falas_copia = self.falas[:]
+        random.shuffle(self.falas_copia)
     def __str__(self):
         if len(self.falas_copia) == 0:
             self.falas_copia = self.falas[:]
-        mensagem = self.falas_copia.pop(random.randint(0, len(self.falas_copia) - 1))
+            random.shuffle(self.falas_copia)
+        mensagem = self.falas_copia.pop()
         return mensagem
 
 client = discord.Client()
@@ -47,7 +49,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     boteco = client.get_channel('524737257945694243')
     bot = list(client.servers).pop().me # cria o objeto membro referente ao bot
-    tempo_inicial = time.time() - 100000
+    tempo_inicial = time.time() - float('inf')
     tempo_espera = ESPERA + abs(random.gauss(0, 1*60))
     canal = boteco
     mensagens = 1
