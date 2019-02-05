@@ -40,4 +40,5 @@ with open('haxboys.txt', 'r') as arquivo:
                 pass
 print("teste")
 for i in haxboys:
-    print(i.nickname, i.falas)
+    for j in i.falas:
+        print(j)
