@@ -1,1 +1,1 @@
-#img{lolblocked.png};
+"#img{lolblocked.png};"
