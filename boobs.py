@@ -33,10 +33,7 @@ haxboys = []
 with open('haxboys.txt', 'r') as arquivo:
     for linha in arquivo:
         for autista in linha.split(sep=';'):
-            try:
-                haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
-            except Exception as e:
-                print(e)
+            haxboys.append(Haxboys(filename = 'hb/'+autista+'.txt', avatar = 'hb/'+autista+'.png'))
 
 for hb in haxboys:
     print(hb.nickname, end=': ')
