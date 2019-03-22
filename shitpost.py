@@ -48,7 +48,7 @@ with io.open('haxboys.txt', 'r', encoding="utf8") as arquivo:
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    boteco = client.get_channel('524737257945694243')
+    boteco = client.get_channel('558707586921136138')
     bot = list(client.servers).pop().me # cria o objeto membro referente ao bot
     tempo_inicial = time.time() - float('inf')
     tempo_espera = ESPERA + abs(random.gauss(0, 1*60))
