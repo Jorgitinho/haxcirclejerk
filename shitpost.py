@@ -99,7 +99,7 @@ async def on_ready():
                     msg = msg[1:]
                     letra = msg[0]
                 with open('img/'+img_path, 'rb') as imagem:
-                    await canal.send(file=discord.file(imagem), content = msg[1:])
+                    await canal.send(file=discord.File(imagem), content = msg[1:])
             else:
                 await canal.send(content = msg)
             mensagens += 1
