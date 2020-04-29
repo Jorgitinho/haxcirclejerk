@@ -5,7 +5,16 @@ import asyncio
 import time
 import io
 
-ESPERA = 10*60 
+ids = []
+with open('./id.txt', 'r') as id:
+    for line in id:
+        if not line.startswith('#'):
+            ids.append(line.strip())
+BOT = ids[0]
+AMIGOSTM = ids[1]
+BOTECO = ids[2]
+BOTNAME = 'HaxBot 🤖'
+ESPERA = 10*60 #tempo base de espera entre as msg (em seg)
 
 class Haxboys:
     def __init__(self, filename = 'hb/haxboy.txt', avatar = 'hb/haxboy.png'):
@@ -37,8 +46,8 @@ class Haxboys:
         mensagem = self.falas_copia.pop()
         return mensagem
 
-client = discord.Client()
-server = discord.Server(id='447168484124655647')
+client = discord.Client() #Represents a client connection that connects to Discord. This class is used to interact with the Discord WebSocket and API
+#server = discord.Server(id='447168484124655647')
 haxboys = []
 with io.open('haxboys.txt', 'r', encoding="utf8") as arquivo:
     for linha in arquivo:
@@ -48,20 +57,27 @@ with io.open('haxboys.txt', 'r', encoding="utf8") as arquivo:
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    boteco = client.get_channel('558707586921136138')
-    bot = list(client.servers).pop().me # cria o objeto membro referente ao bot
+    amigostm = await client.fetch_guild(AMIGOSTM)
+    bot = None
+    async for member in amigostm.fetch_members(limit=150):
+        if BOTNAME in member.name:
+            bot = member
+    boteco = await client.fetch_channel(BOTECO)
+    bot_avatar = client.user
+
     tempo_inicial = time.time() - float('inf')
     tempo_espera = ESPERA + abs(random.gauss(0, 1*60))
     canal = boteco
     mensagens = 1
+
     while True:
         if time.time() - tempo_inicial > tempo_espera:
             try:
                 escolhido = random.choice(haxboys)
-                await client.change_nickname(bot, escolhido.nickname)
+                await bot.edit(nick=escolhido.nickname)
                 print(1)
-                with open(escolhido.avatar, 'rb') as avatar:
-                    await client.edit_profile(avatar = avatar.read())
+                with open(escolhido.avatar, 'rb') as foto:
+                    await bot_avatar.edit(avatar = foto.read())
                 print(2)
                 print(escolhido.nickname+'@boteco')
                 tempo_inicial = time.time()
@@ -83,9 +99,9 @@ async def on_ready():
                     msg = msg[1:]
                     letra = msg[0]
                 with open('img/'+img_path, 'rb') as imagem:
-                    await client.send_file(canal, imagem, content = msg[1:])
+                    await canal.send(file=discord.file(imagem), content = msg[1:])
             else:
-                await client.send_message(canal, msg)
+                await canal.send(content = msg)
             mensagens += 1
         await asyncio.sleep((2*ESPERA/60) + abs (3*random.gauss(0, ESPERA/60)))
 
