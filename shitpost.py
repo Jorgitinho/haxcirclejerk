@@ -73,7 +73,7 @@ async def on_ready():
 
     while True:
         #Seleciona (e remove) um haxboy
-        if len(haxboys) = 0:
+        if len(haxboys) == 0:
             haxboys = random.shuffle(HAXBOYS[:])
         if time.time() - tempo_inicial > tempo_espera:
             try:
