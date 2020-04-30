@@ -50,9 +50,8 @@ class Haxboys:
 HAXBOYS = []
 for elemento in os.listdir(DIRETORIO):
     if EXT_TXT in elemento:
-        HAXBOYS.append(elemento[:-len(EXT_TXT)])
-haxboys = HAXBOYS[:]
-random.shuffle(haxboys)
+        nome = elemento[:-len(EXT_TXT)]
+        HAXBOYS.append(Haxboys(DIRETORIO+nome+EXT_TXT, DIRETORIO+nome+EXT_IMG))
 
 client = discord.Client()
 @client.event
@@ -71,6 +70,8 @@ async def on_ready():
     tempo_inicial = time.time() - float('inf')
     tempo_espera = ESPERA + abs(random.gauss(MU, SIGMA)) #espera de no min ESPERA seg
     mensagens = 1 #contador de mensagens
+    haxboys = HAXBOYS[:]
+    random.shuffle(haxboys)
 
     while True:
         #Seleciona (e remove) um haxboy
