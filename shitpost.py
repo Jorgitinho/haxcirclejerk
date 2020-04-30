@@ -1,5 +1,4 @@
-﻿#feito com carinho por jorginho e qtinho :3
-import discord
+﻿import discord
 import random
 import asyncio
 import time
@@ -17,26 +16,18 @@ BOTNAME = 'HaxBot 🤖'
 ESPERA = 10*60 #tempo base de espera entre as msg (em seg)
 
 class Haxboys:
-    def __init__(self, filename = 'hb/haxboy.txt', avatar = 'hb/haxboy.png'):
+    '''Classe contendo o nome, avatar e as falas do autista escolhido'''
+    def __init__(self, filename = 'hb/haxboy.txt', avatar = 'hb/haxboy.png', delimitador='"'):
         self.falas = []
         self.nickname = filename[3:-4]
         self.avatar = avatar
         with io.open(filename, 'r', encoding="utf8") as fonte:
-            hashtag = False
-            contador = 0
-            frase = ''
             for linha in fonte:
-                for letra in linha:
-                    if letra == '"':
-                        hashtag = not hashtag
-                        contador += 1
-                    if hashtag:
-                        if letra != '"':
-                            frase += letra
-                    if contador == 2:
-                        self.falas.append(frase)
-                        frase = ''
-                        contador = 0
+                frase = ''
+                for letra in linha.strip():
+                    if letra != delimitador:
+                        frase += letra
+                self.falas.append(frase)
         self.falas_copia = self.falas[:]
         random.shuffle(self.falas_copia)
     def __str__(self):
