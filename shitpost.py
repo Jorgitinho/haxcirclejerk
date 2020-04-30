@@ -51,7 +51,8 @@ HAXBOYS = []
 for elemento in os.listdir(DIRETORIO):
     if EXT_TXT in elemento:
         HAXBOYS.append(elemento[:-len(EXT_TXT)])
-haxboys = random.shuffle(HAXBOYS[:])
+haxboys = HAXBOYS[:]
+random.shuffle(haxboys)
 
 client = discord.Client()
 @client.event
@@ -74,7 +75,8 @@ async def on_ready():
     while True:
         #Seleciona (e remove) um haxboy
         if len(haxboys) == 0:
-            haxboys = random.shuffle(HAXBOYS[:])
+            haxboys = HAXBOYS[:]
+            random.shuffle(haxboys)
         if time.time() - tempo_inicial > tempo_espera:
             try:
                 escolhido = haxboys.pop()
